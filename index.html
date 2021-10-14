@@ -1,0 +1,433 @@
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+	<script src="https://unpkg.com/vue-meta/dist/vue-meta.min.js"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/png" href="https://i.imgur.com/ozbY5QF.jpeg">
+
+	<!-- HTML Meta Tags -->
+	<title>Fo You Yuan - Vegetarian Restaurant 佛有缘</title>
+	<meta name="description" content="Singapore's oldest Chinese vegetarian restaurant">
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://foyouyuan.com.sg/">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="Fo You Yuan - Vegetarian Restaurant 佛有缘">
+	<meta property="og:description" content="Singapore's oldest Chinese vegetarian restaurant">
+	<meta property="og:image" :content="https://i.imgur.com/9ehMNVs.jpg">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="twitter:domain" content="foyouyuan.com.sg">
+	<meta property="twitter:url" content="https://foyouyuan.com.sg/">
+	<meta name="twitter:title" content="Fo You Yuan - Vegetarian Restaurant 佛有缘">
+	<meta name="twitter:description" content="Singapore's oldest Chinese vegetarian restaurant">
+	<meta name="twitter:image" content="https://i.imgur.com/9ehMNVs.jpg">
+
+	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
+
+		#app {
+			font-family: Avenir, Helvetica, Arial, sans-serif;
+			text-align: center;
+			color: #353535;
+			margin-top: 60px;
+			width: ;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		#container {
+			max-width: 350px;
+			border: solid 1px #eeeeee;
+			border-radius: 10px;
+			box-shadow: 1px 1px 3px 1px #eeeeee;
+		}
+
+		h1 {
+			font-family: Inter, Helvetica, Arial, sans-serif;
+			font-size: 25px;
+			/*-webkit-linear-gradient(180deg, #fc6f6f, #840000);
+			background: -webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;*/
+			position: relative;
+			padding: 0 20px;
+		}
+
+		h3 {
+			font-family: Inter, Helvetica, Arial, sans-serif;
+			font-size: 18px;
+		}
+
+		em {
+			color: #b5b5b5;
+		}
+
+		a,
+		button {
+			color: #209cee;
+			text-decoration: none;
+		}
+
+		button {
+			background: none;
+			border: solid 1px;
+			border-radius: 2em;
+			font: inherit;
+			padding: 0.75em 2em;
+		}
+
+		.button {
+			/*background: -webkit-linear-gradient(180deg, #fc6f6f, #840000);*/
+			color: #ffffff;
+			border-radius: 0.4em;
+			font: inherit;
+			padding: 0.75em 2em;
+			position: relative;
+			text-decoration: none;
+			font-family: Inter, Helvetica, Arial, sans-serif;
+			font-size: 20px;
+			transition-duration: 0.3s;
+		}
+
+		.button:hover {
+			color: #b5b5b5;
+		}
+
+		.profilepic {
+			width: 80px;
+			border-radius: 50%;
+			justify-content: center;
+			position: relative;
+			bottom: 2.5em;
+			border: 6px solid white;
+			z-index: 999;
+		}
+
+		.banner-img {}
+
+		.banner {
+			/*background-image: url('/image.jpg');*/
+			background-size: cover;
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			width: 100%;
+			height: 200px;
+			max-width: 100%;
+			max-height: 200px;
+			justify-content: center;
+			display: inline-block;
+			position: relative;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+
+		.body {
+			position: relative;
+			bottom: 1.5rem;
+		}
+
+		.fa {
+			font-size: 20px;
+			padding-right: 10px;
+		}
+
+		table {
+			text-align: left;
+			border-spacing: 5px;
+			font-size: 14px;
+			display: flex;
+			justify-content: center;
+		}
+
+		hr {
+			max-width: 60%;
+			border: solid 1px #eee;
+		}
+
+		th,
+		td {
+			vertical-align: top;
+			padding: 0 25px 0 5px;
+		}
+
+		.social {
+			display: flex;
+			justify-content: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		.footer a {
+			color: #7a7a7a !important;
+		}
+
+		@media only screen and (max-width: 411px) {
+			#container {
+				max-width: 100%;
+			}
+
+			table {
+				display: flex;
+				justify-content: center;
+				margin-left: 1rem;
+			}
+		}
+
+		@media only screen and (min-width: 411px) {
+			#container {
+				max-width: 80%;
+			}
+
+			.profilepic {
+				bottom: 3em;
+			}
+
+			.body {
+				bottom: 2rem;
+			}
+
+			table {
+				display: flex;
+				justify-content: center;
+				margin-left: 1rem;
+			}
+		}
+
+		@media only screen and (min-width: 600px) {
+			#container {
+				max-width: 60%;
+			}
+
+			.profilepic {
+				bottom: 2.5em;
+			}
+
+			.body {
+				bottom: 1.5rem;
+			}
+
+			table {
+				display: flex;
+				justify-content: center;
+				margin-left: 1rem;
+			}
+		}
+
+		@media only screen and (min-width: 768px) {
+			#container {
+				width: 350px;
+			}
+
+			table {
+				display: flex;
+				justify-content: center;
+				margin-left: 1rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<div id="container">
+			<!-- <div class="banner" style="background-image: url('https://scontent.fsin7-1.fna.fbcdn.net/v/t1.6435-9/97446727_156262655877523_2784533916264955904_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=973b4a&_nc_ohc=8WYqe9lM67UAX9MJaXb&_nc_ht=scontent.fsin7-1.fna&oh=78076d46fdbf86fb854fb6762526575f&oe=60BE9C3B')"></div> -->
+			<div class="banner" :style="{ backgroundImage: 'url(' + info[2].DETAILS + ')' }"></div>
+			<img :src="info[1].DETAILS" class="profilepic">
+			<div class="body">
+				<h1 :style="{ color: info[23].DETAILS }">{{ info[0].DETAILS }}</h1>
+				<p style="margin: 0 30px;">{{ info[3].DETAILS }}</p><br /><br />
+				<a class="button" :href="info[4].DETAILS" :style="{ background: '-webkit-linear-gradient(180deg, ' + LightenDarkenColor(info[23].DETAILS, -100) + ',' + info[23].DETAILS + ')' }" target="_blank" rel="noopener"><i class="fa fa-shopping-cart"></i> See menu</a>
+				<!-- <a class="button" :href="info[11].gs$cell.$t" :style="{ background: '-webkit-linear-gradient(180deg, ' + info[47].gs$cell.$t + '99,' + info[47].gs$cell.$t + ')' }" target="_blank" rel="noopener"><i class="fa fa-shopping-cart"></i> Order now</a> -->
+				<br /><br /><br />
+				<h3><i class="fa fa-map-marker"></i>Location</h3>
+				<a :href="info[5].DETAILS" target="_blank" rel="noopener nofollow" :style="{ color: info[23].DETAILS }">{{ info[6].DETAILS }}</a><br /><br />
+				<h3><i class="fa fa-globe"></i>Website</h3>
+				<div v-if="info[7].DETAILS === '-'"><em>Not available</em></div>
+				<div v-else><a :href="info[7].DETAILS" target="_blank" rel="noopener nofollow" :style="{ color: info[23].DETAILS }">{{ info[7].DETAILS }}</a></div><br />
+				<h3><i class="fa fa-phone"></i>Phone</h3>
+				<div v-if="info[8].DETAILS === '-'"><em>Not available</em></div>
+				<div v-else><a :href="'tel:' + info[8].DETAILS" target="_blank" rel="noopener nofollow" :style="{ color: info[23].DETAILS }">{{ info[8].DETAILS }}</a></div><br />
+				<h3><i class="fa fa-clock-o"></i>Operating hours</h3>
+				<hr />
+				<table>
+					<tr>
+						<th>Mon:</th>
+						<td>{{ info[10].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Tue:</th>
+						<td>{{ info[11].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Wed:</th>
+						<td>{{ info[12].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Thu:</th>
+						<td>{{ info[13].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Fri:</th>
+						<td>{{ info[14].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Sat:</th>
+						<td>{{ info[15].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>Sun:</th>
+						<td>{{ info[16].DETAILS }}</td>
+					</tr>
+					<tr>
+						<th>PH:</th>
+						<td>{{ info[17].DETAILS }}</td>
+					</tr>
+				</table><br /><br />
+				<div class="social">
+					<a :href="info[19].DETAILS" target="_blank" rel="noopener" :style="{ color: info[23].DETAILS }"><i class="fa fa-facebook-official" style="font-size: 30px !important;padding:20px"></i></a><br />
+					<div v-if="info[20].DETAILS === '-'"></div>
+					<div v-else><a :href="info[20].DETAILS" target="_blank" rel="noopener" :style="{ color: info[23].DETAILS }"><i class="fa fa-instagram" style="font-size: 30px !important;padding:20px"></i></a></div>
+					<div v-if="info[21].DETAILS === '-'"></div>
+					<div v-else><a :href="'mailto:' + info[21].DETAILS" target="_blank" rel="noopener" :style="{ color: info[23].DETAILS }"><i class="fa fa-envelope" style="font-size: 30px !important;padding:20px;"></i></a></div>
+					<div v-if="info[22].DETAILS === '-'"></div>
+					<div v-else><a :href="info[22].DETAILS" target="_blank" rel="noopener" :style="{ color: info[23].DETAILS }"><i class="fa fa-whatsapp" style="font-size: 30px !important;padding:20px;"></i></a></div>
+				</div><br /><br />
+				—<br /><br />
+				<div class="footer"><a href="https://twitter.com/jasonleowsg" target="_blank" rel="noopener">Made with RestoBio</a></div>
+
+				<!-- <div v-for="views in info">{{views.gs$cell.$t}}</div> -->
+
+				<!-- <button @click="doSomething">Say hello.</button> -->
+			</div>
+			<br />
+			<code style="display: none">Source json from Google Sheets: {{ info }}</code>
+		</div>
+	</div>
+
+</body>
+
+<script>
+	var app = new Vue({
+		el: '#app',
+		data() {
+			return {
+				message: "Welcome",
+				info: [],
+				metaTitle: "",
+			};
+		},
+		metaInfo() {
+			const info = this.info
+			return {
+				title: `${ info[0].DETAILS }`,
+			}
+		},
+		/*metaInfo() {
+			return {
+				title: `${this.info[3].gs$cell.$t} - Epiloge`,
+				meta: [{
+						name: 'description',
+						content: 'Connect and follow ' + this.userData.name + ' on Epiloge - ' + this.userData.tagline
+					},
+					{
+						property: 'og:title',
+						content: this.userData.name + ' - Epiloge'
+					},
+					{
+						property: 'og:site_name',
+						content: 'Epiloge'
+					},
+					{
+						property: 'og:description',
+						content: 'Connect and follow ' + this.userData.name + ' on Epiloge - ' + this.userData.tagline
+					},
+					{
+						property: 'og:type',
+						content: 'profile'
+					},
+					{
+						property: 'og:url',
+						content: 'https://epiloge.com/@' + this.userData.username
+					},
+					{
+						property: 'og:image',
+						content: this.aws_url + '/users/' + this.userData.profileurl + '-main.jpg'
+					}
+				]
+			}
+		},*/
+		/*metaInfo: {
+			title: 'resto',
+			titleTemplate: '%s | vue-meta Example App',
+			htmlAttrs: {
+				lang: 'en-US'
+			},
+			meta: [{
+					charset: 'utf-8'
+				},
+				{
+					name: 'description',
+					content: 'An example Vue application with vue-meta.'
+				},
+				{
+					name: 'viewport',
+					content: 'width=device-width, initial-scale=1'
+				}
+			]
+		},*/
+		mounted() {
+				// this fetches the json from the Google Sheet https://spreadsheets.google.com/feeds/cells/1coFHA-s4oZ_fvFMsJXPEnZn0S83At9kFWm8MrJOGutE/1/public/full?alt=json
+				// https://v1.nocodeapi.com/jasonleow/google_sheets/PztRggoZhDUJGzow?tabId=Sheet1
+				// https://script.google.com/macros/s/AKfycbzGvKKUIaqsMuCj7-A2YRhR-f7GZjl4kSxSN1YyLkS01_CfiyE/exec?id=1coFHA-s4oZ_fvFMsJXPEnZn0S83At9kFWm8MrJOGutE&sheet=Sheet1
+				axios
+					.get("https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=1coFHA-s4oZ_fvFMsJXPEnZn0S83At9kFWm8MrJOGutE&sheet=Sheet1")
+					.then((response) => (this.info = response.data.Sheet1))
+					console.log('this.info', this.info)
+					// this logs and shows errors or loading alerts
+					.catch((error) => {
+						console.log(error);
+						this.errored = true;
+					})
+					.finally(() => (this.loading = false));
+		},
+		methods: {
+			LightenDarkenColor(col, amt) {
+				var usePound = false;
+				if (col[0] == "#") {
+					col = col.slice(1);
+					usePound = true;
+				}
+				var num = parseInt(col, 16);
+				var r = (num >> 16) + amt;
+				if (r > 255) r = 255;
+				else if (r < 0) r = 0;
+				var b = ((num >> 8) & 0x00FF) + amt;
+				if (b > 255) b = 255;
+				else if (b < 0) b = 0;
+				var g = (num & 0x0000FF) + amt;
+				if (g > 255) g = 255;
+				else if (g < 0) g = 0;
+				return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
+			},
+		},
+	})
+</script>
+
+<!-- <script>
+	var vm = new Vue({
+		el: "head",
+		data: {
+			title: "Vue.js - The UNIX and Linux Forums",
+			desc: "My Vue.js - The UNIX and Linux Forums",
+			keywords: "My (Obsolete) Keywords"
+		}
+	});
+</script> -->
